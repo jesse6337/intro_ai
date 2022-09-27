@@ -30,10 +30,22 @@ def prob_of_belief(sensor, worldP, beliefP):
     for i in range(len(belief_)):
         belief_[i] /= sum
     return belief_
+def find_highst_prob_indexs(list): # returns list of the indexs w/ the highest prob
+    pI = 0
+    highest = 0
+    highestI = []
+    for i in range(len(list)):
+        if list[i] > highest:
+            highest = list[i]
+            highestI.append(i)
+        elif list[i] == highest:
+            highestI.append(i)
+    return highestI
 #robot makes sence of envirment
 #sensing green is the same as not sensing red
 
 #upade prob belief of robot's position in the world(map)
 belief =prob_of_belief(currentSenorReading, world, belief)
 print(wLen)
+print(find_highst_prob_indexs(belief))
 print(belief)
