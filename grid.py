@@ -12,19 +12,24 @@ belief = [wLen for i in range(len(world))]
 # Intial prob belief of robot being in any position on the map 
 # (descrete uniform distrobution)
 currentSenorReading = 'g'
-for i in range(len(world)):
-    if currentSenorReading == world[i]:
-        belief[i] *= 0.9 
-    elif currentSenorReading != world[i]:
-        belief[i] *= 0.1 
-sum = 0 
-for i in belief:
-    sum += i
-for i in range(len(belief)):
-    belief[i] /= sum
+def prob_of_belief(sensor, world, belief):
+    cSenorReading = sensor
+    world = world
+    belief = belief
+    for i in range(len(world)):
+        if currentSenorReading == world[i]:
+            belief[i] *= 0.9 
+        elif currentSenorReading != world[i]:
+            belief[i] *= 0.1 
+    sum = 0 
+    for i in belief:
+        sum += i
+    for i in range(len(belief)):
+        belief[i] /= sum
 #robot makes sence of envirment
 #sensing green is the same as not sensing red
 
 #upade prob belief of robot's position in the world(map)
+prob_of_belief(currentSenorReading, world, belief)
 print(wLen)
 print(belief)
