@@ -1,9 +1,7 @@
 #Sensor sences red or no red
 #sensor is 90% accrurate
 #grids are red or green
-
-
-print("Hello World")
+#added sum extra stuff that seem useful
 
 world = ['r','g','g','r','g']
 #comprehension
@@ -23,7 +21,7 @@ def prob_of_belief(sensor, worldP, beliefP):
         elif sensor != world_[i]:
             belief_[i] *= 0.1 
     sum = 0 
-    #find bottom half of Bayes formula
+    #find bottom half of Bayes formula (normalizer)
     for i in belief_:
         sum += i
     #complete Bayes Formula
@@ -45,7 +43,8 @@ def find_highst_prob_indexs(list): # returns list of the indexs w/ the highest p
 #sensing green is the same as not sensing red
 
 #upade prob belief of robot's position in the world(map)
-belief =prob_of_belief(currentSenorReading, world, belief)
+belief = prob_of_belief(currentSenorReading, world, belief)
 print(wLen)
 print(find_highst_prob_indexs(belief))
 print(belief)
+
