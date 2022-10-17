@@ -1,3 +1,4 @@
+from matplotlib import pyplot as plt
 #possible possitions
 map = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 #sensor accuratcy 
@@ -27,5 +28,11 @@ def findProb(world, sReading):
         belief[i] /= normalizer
     return belief
 # call function
-probDistribution = findProb(map,currentSensorReading)
-print(probDistribution)
+probDistribution1 = findProb(map,currentSensorReading)
+probDistribution2 = findProb(map,500)
+x_values = [i for i in range(len(probDistribution1))]
+print(probDistribution1)
+print("")
+print(probDistribution2)
+plt.plot(x_values, probDistribution1)
+plt.show()
