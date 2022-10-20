@@ -1,5 +1,5 @@
 # 1 is door 0 is wall
-world = [1,0,1,0,0,1,1,0]
+world = [1,0,1,0,0]
 belief = []
 # P(Xi)
 for i in range(len(world)):

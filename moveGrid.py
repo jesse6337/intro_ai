@@ -1,4 +1,7 @@
-world = ['r','g','g','r','g']
+from secrets import randbelow
+
+
+world = ['r','g','r','g','g']
 #comprehension
 wLen = 1/len(world)
 belief = [wLen for i in range(len(world))]
@@ -21,7 +24,9 @@ def prob_of_belief(sensor, worldP, beliefP):
         sum += i
     #complete Bayes Formula
     for i in range(len(belief_)):
-        belief_[i] /= sum
+        belief_[i] =belief[i] /sum
+        round(belief[i],3)
+        
     return belief_
 def find_highst_prob_indexs(list): # returns list of the indexs w/ the highest prob
     pI = 0
@@ -38,14 +43,24 @@ def find_highst_prob_indexs(list): # returns list of the indexs w/ the highest p
 #sensing green is the same as not sensing red
 
 #upade prob belief of robot's position in the world(map)
-def findProbB(wBelief):
-    for i in range(len(wBelief)):
-        if currentSenorReading == world[i]:
-            wBelief[i] *= 0.9 
-        elif currentSenorReading!= world[i]:
-            wBelief[i] *= 0.1 
-    sum = 0 
-belief = findProbB(belief)
-print(wLen)
-print(find_highst_prob_indexs(belief))
+def move(map, belief, movement = 2):
+    newBelief = [0 for i in range(len(map))]
+    for i in range(len(map)):
+        #movement for accurate movement
+        newiAC = (i + movement) % len(belief)
+        #movement for under shoot
+        newiUN = (i + movement-1) % len(belief)
+        #movement for over shoot
+        newiON = (i + movement+1) % len(belief)
+        # new belief after moving assuming 80% accuracy 
+        newBelief[newiAC] += (belief[i] *0.8)
+        # belief update overshoot
+        newBelief[newiON] += (belief[i] *0.1)
+        # belief update undershoot
+        newBelief[newiUN] += (belief[i] *0.1)
+    return newBelief
+
+belief = prob_of_belief('g', world, belief)
+newBelief = move(world, belief)
 print(belief)
+print(newBelief)

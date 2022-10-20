@@ -3,7 +3,7 @@
 #grids are red or green
 #added sum extra stuff that seem useful
 
-world = ['r','g','g','r','g']
+world = ['r','g','r','g','g']
 #comprehension
 wLen = 1/len(world)
 belief = [wLen for i in range(len(world))]
@@ -44,7 +44,5 @@ def find_highst_prob_indexs(list): # returns list of the indexs w/ the highest p
 
 #upade prob belief of robot's position in the world(map)
 belief = prob_of_belief(currentSenorReading, world, belief)
-print(wLen)
-print(find_highst_prob_indexs(belief))
 print(belief)
 
