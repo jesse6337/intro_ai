@@ -1,0 +1,16 @@
+def moveLeft(map, belief, movement = -3):
+    newBelief = [0 for i in range(len(map))]
+    for i in range(len(map)):
+        #movement for accurate movement
+        newiAC = (i + movement) % len(belief)
+        #movement for under shoot
+        newiUN = (i + movement-1) % len(belief)
+        #movement for over shoot
+        newiOV= (i + movement+1) % len(belief)
+        # new belief after moving assuming 80% accuracy 
+        newBelief[newiAC] += (belief[i] *0.85)
+        # belief update overshoot
+        newBelief[newiOV] += (belief[i] *0.1)
+        # belief update undershoot
+        newBelief[newiUN] += (belief[i] *0.05)
+    return newBelief
