@@ -36,13 +36,13 @@ def move(map, belief, movement = -3, pU = 0.05, pA = 0.85, pO = 0.1):
         newBelief[newiUN] += (belief[i] *pU)
     newBelief = [round(newBelief[i], 3) for i in range(len(newBelief))]
     return newBelief
-belief = prob_of_belief(sensor, map, belief)
+senses = map
+stuff = [False, False, False, False]
+for i in range(2):
+    for i in range(len(senses)):
+        belief = prob_of_belief(senses[i], map, belief)
+        #print(belief)
+        belief = move(map, belief, 1)
+        #print(belief)
 print(belief)
-belief = move(map, belief, -3)
-print(belief)
-newSense = prob_of_belief(True, map, belief)
-print(newSense)
-newSense = move(map, newSense, 5)
-print(newSense)
-newSense = prob_of_belief(False, map, newSense)
-print(newSense)
+
