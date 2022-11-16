@@ -38,7 +38,7 @@ def move(map, belief, movement = -3, pU = 0.05, pA = 0.85, pO = 0.1):
     return newBelief
 senses = map
 stuff = [False, False, False, False]
-for i in range(2):
+for i in range(200):
     for i in range(len(senses)):
         belief = prob_of_belief(senses[i], map, belief)
         #print(belief)
