@@ -1,3 +1,5 @@
+import time
+startTime = time.time()
 map = [['r', 'r','g'],
         ['g', 'r','g'],
         ['r','g','r']]
@@ -15,8 +17,8 @@ def sense(map, belief, reading):
     for i in range(len(belief)):
         for j in range(len(belief[i])):
             if reading == map[i][j]:
-                belief[i][j] *= 0.9
-            else: belief[i][j] *= 0.1
+                belief[i][j] *= 0.988
+            else: belief[i][j] *= 0.012
     normilizer = 0
     for i in range(len(belief)):
         for j in range(len(belief[i])):
@@ -35,7 +37,6 @@ def average(belief1, belief2):
         for j in range(len(belief[i])):
             belief[i][j] = (belief1[i][j]+belief2[i][j])/2
     return belief
-    #This is the problem
 
 def move(world, belief, move_amount):
     moveBelief = []
@@ -58,9 +59,9 @@ def move(world, belief, move_amount):
             unShootIx = int(move_amount[0]+j - directionx) % len(world) 
             acShootIx = (move_amount[0]+j) % len(world) 
             ovShootIx = int(move_amount[0]+j + directionx) % len(world)
-            moveBelief[i][unShootIx] += (belief[i][j] * 0.1)
-            moveBelief[i][acShootIx] +=( belief[i][j] * 0.8)
-            moveBelief[i][ovShootIx] += (belief[i][j] * 0.1)
+            moveBelief[i][unShootIx] += (belief[i][j] * 0.01)
+            moveBelief[i][acShootIx] +=( belief[i][j] * 0.98)
+            moveBelief[i][ovShootIx] += (belief[i][j] * 0.01)
     moveBelief2 = []
     for i in range(len(world)):
         moveBelief2.append([])
@@ -76,15 +77,19 @@ def move(world, belief, move_amount):
             #print(unShootIy)
             #print(acShootIy)
             #print(ovShootIy)
-            moveBelief2[unShootIy][j] += (belief[i][j] * 0.1)
-            moveBelief2[acShootIy][j] += (belief[i][j] * 0.8)
-            moveBelief2[ovShootIy][j] += (belief[i][j] * 0.1)
+            moveBelief2[unShootIy][j] += (belief[i][j] * 0.005)
+            moveBelief2[acShootIy][j] += (belief[i][j] * 0.99)
+            moveBelief2[ovShootIy][j] += (belief[i][j] * 0.005)
     return average(moveBelief, moveBelief2)
-readings = ['r','r','g', 'r', 'r']
-moves = [[1,0], [1,0], [1,0], [1,0], [1,0]]
+readings = ['r','r','r', 'g', 'g','r']
+moves = [[1,1], [1,1], [0,-1], [1,0], [1,0], [1,0]]
 for i in range(len(readings)):
     belief = sense(map, belief, readings[i])
-    print(belief)
+    #print(belief)
     belief = move(map, belief, moves[i])
-    print("")
-    print(belief)
+    #print("")
+print(belief)
+belief = sense(map, belief, 'g')
+print(belief)
+endTime = time.time()
+print(endTime - startTime)
