@@ -22,11 +22,11 @@ for i in range(len(lines)):
         b +=1
     elif check[0] == "C":
         c +=1
-    elif check[1] == 'X':
+    if check[1] == 'X\n':
         x +=1
-    elif check[1] == "Y":
+    elif check[1] == 'Y\n':
         y +=1
-    elif check[1] == "Z":
+    elif check[1] == "Z\n":
         z +=1
     for j in range(len(wins)):
         if check == wins[j]:
@@ -37,12 +37,9 @@ for i in range(len(lines)):
             numLosts+=1
         else:
             errorCount += 1
-b*= 2
-y *=2
-c *= 3
-z *= 3
 winPoint = numWins * 6
 tiePoint = numDraws*3
-print(x)
+y *= 2
+z*= 3
 print(winPoint+ tiePoint+x+y+z)
             
