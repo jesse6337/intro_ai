@@ -5,23 +5,26 @@ common = []
 flag = False
 Lalph = list(string.ascii_lowercase)
 Ualph = list(string.ascii_uppercase)
-for i in range(len(lines)):
-    check = lines[i]
-    check11 = slice(0,len(lines[i])//2)
-    check22 = slice(len(lines[i])//2, len(lines[i]))
-    check1 = check[check11]
-    check2 = check[check22]
-    print(check1, check2)
-    for j in range(len(check1)):
+for i in range(0,len(lines),3):
+    check0 = lines[i]
+    check1 = lines[i+1]
+    check2 = lines[i+2]
+    #print(check0, check1, check2)
+    # add extra for loop
+    for j in range(len(check0)):
         if flag:break
-        for k in range(len(check2)):
-            if check1[j] == check2[k]!= '\n':
-                common.append(check1[j])
-                flag = True
-                break
+        for k in range(len(check1)):
+            if flag :break
+            for l in range(len(check2)):
+                if check0[j] == check1[k] == check2[l]!= '\n':
+                    common.append(check1[k])
+                    flag = True
+                    break
     flag = False
 pointsL = 0
 pointsU = 0
+print(len(common))
+print(common)
 for i in range(len(Lalph)):
     pointsL += common.count(Lalph[i])* (i+1)  
 for i in range(len(Ualph)):
