@@ -14,10 +14,10 @@ for i in range(len(checklist)):
 for i in range(1,len(checklist),2):
     num1 = checklist[i-1]
     num2 = checklist[i]
-    if num1[0] in range(num2[0],num2[1]) or num2[0] in range(num1[0], num1[1]):
+    if num1[0] in range(num2[0],num2[1]-1) or num2[0] in range(num1[0], num1[1]-1):
         # this contains that
         crossover.append([num1,num2])
-    elif num1[1] in range(num2[0],num2[1])or num2[1] in range(num1[0], num1[1]):
+    elif num1[1] in range(num2[0],num2[1]-1)or num2[1] in range(num1[0], num1[1]-1):
         # this contains that
         crossover.append([num2, num1])
 #print(len(crossover))
