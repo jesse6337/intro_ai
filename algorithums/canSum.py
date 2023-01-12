@@ -7,4 +7,4 @@ def canSum(target, numbers, tested = {}):
         if canSum(remainder, numbers, tested) == True: return True
         else: tested[target] = False
     return False
-print(canSum(9008, (14,87)))
+print(canSum(908, (14,87)))

@@ -5,13 +5,13 @@ def fib(n, memo = {}):
     memo[n] = (fib(n-1, memo)+fib(n-2, memo))
     return memo[n]
 start = time.time()
-print(fib(791))
+print(fib(900))
 end = time.time()-start
 print(end)
 def badFib(n):
     if n <= 2: return 1
     return badFib(n-1)+badFib(n-2)
 start = time.time()
-print(badFib(40))
+print(badFib(42))
 end = time.time()-start
 print(end)
