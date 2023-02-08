@@ -1,10 +1,6 @@
 import customtkinter as ct
-<<<<<<< HEAD
 import call_stacck
 import constants
-=======
-import main
->>>>>>> 25d7757bd88f6b60b6bd294bbf1cc8a872ca43fa
 class GUI:
     def __init__(self):
         ct.set_appearance_mode("dark")
@@ -12,7 +8,6 @@ class GUI:
 
         root = ct.CTk()
         root.geometry("500x500")
-<<<<<<< HEAD
         def run_local():
             call_stacck.main_localize()
         def run_path():
@@ -57,25 +52,3 @@ class GUI:
         #button2.pack(pady = 12, padx =10)
 
         root.mainloop()
-=======
-        def run():
-            main.main_localize()
-
-        frame = ct.CTkFrame(master = root)
-        frame.pack(pady = 20, padx = 60, fill = "both", expand = True)
-
-        #label = ct.CTkLabel(master = frame,text= "HI there!", text_font = ("Times New Roman", 24))
-        #label.pack(pady = 12, padx = 10)
-
-       # entry  = ct.CTkEntry(master = frame, placeholder_text= "enter something:")
-       # entry.pack(pady = 12, padx =10)
-
-        button1 = ct.CTkButton(master = frame, text = "start localization", command= run)
-        button1.pack(pady = 12, padx =10)
-
-        button2 = ct.CTkButton(master = frame, text = "start pathPlanning", command= run)
-        button2.pack(pady = 12, padx =10)
-
-        root.mainloop()
-GUI()
->>>>>>> 25d7757bd88f6b60b6bd294bbf1cc8a872ca43fa

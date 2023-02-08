@@ -64,9 +64,5 @@ class locals:
                 moveBelief2[unShootIy][j] += (belief[i][j] * 0.005)
                 moveBelief2[acShootIy][j] += (belief[i][j] * 0.99)
                 moveBelief2[ovShootIy][j] += (belief[i][j] * 0.005)
-<<<<<<< HEAD
         belief = self.average(moveBelief, moveBelief2)
         return belief
-=======
-        return self.average(moveBelief, moveBelief2)
->>>>>>> 25d7757bd88f6b60b6bd294bbf1cc8a872ca43fa
