@@ -26,6 +26,10 @@ class visualizer:
                 py.draw.line(self.screen, (225,225,225),(self.xylist[i][0],0), (self.xylist[i][0],self.HEIGHT))
                 py.draw.line(self.screen, (225,225,225),(0,self.xylist[i][1]), (self.WIDTH,self.xylist[i][1]))
                 py.display.flip()
+    def make_font(self, input, midX,midY):
+        num = self.myFont.render(str(input), (255,255,255),(255,255,255))
+        self.screen.blit(num, (midX, midY))
+        py.display.flip()
     def localize_grid(self, belief):
         for x in range(0,self.WIDTH+ self.block_sizeX,self.block_sizeX ):
             for y in range(0, self.HEIGHT+self.block_sizeY, self.block_sizeY):
@@ -35,8 +39,7 @@ class visualizer:
                 brightness = 200* currentB
                 py.draw.rect(self.screen, [0,int(brightness),0] ,py.Rect(x-self.block_sizeX, y-self.block_sizeY, self.block_sizeX,self.block_sizeY))
                 f = str(currentB)
-                num = self.myFont.render(f, (255,255,255),(255,255,255))
-                self.screen.blit(num, (midX, midY))
+                self.make_font(f,midX,midY)
                 py.display.flip()
     def path_grid(self, belief):
         for x in range(0,self.WIDTH+ self.block_sizeX,self.block_sizeX ):
@@ -47,8 +50,7 @@ class visualizer:
                 brightness = 200* currentB
                 py.draw.rect(self.screen, [0,int(brightness),0] ,py.Rect(x-self.block_sizeX, y-self.block_sizeY, self.block_sizeX,self.block_sizeY))
                 f = str(currentB)
-                num = self.myFont.render(f, (255,255,255),(255,255,255))
-                self.screen.blit(num, (midX, midY))
+                self.make_font(f, midX,midY)
                 py.display.flip()
         
     
