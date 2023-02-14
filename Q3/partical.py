@@ -11,6 +11,8 @@ class partical:
         self.distribution = []
         self.median = 0
         self.x = x
+        self.y = 0
+        self.weight = 0
         
     @staticmethod
     def show_map(map):
@@ -24,17 +26,22 @@ class partical:
             guesses.append([random.randrange(0, self.mapSizeX), 0, 0])
         return guesses
     # hide height off the ground
-    def find_altitude():
-        pass
+    def find_HOG(self):
+        for y in range(len(self.map)):
+            if map[y][self.x] == '^':
+                return y
+        
     # assign a importance weight
-    def weight(): 
+    def weighting(): 
         pass
     
     def move(self,dX):
         self.x = (self.x + dX)% self.mapSizeX
         
 
-    def fuzz():
+    def fuzz(self):
+        fuz = random.randint(-1,1)
+        self.move(self.x, fuz    )
         pass
 
     def __repr__(self):
