@@ -16,11 +16,11 @@ class Plane:
 
     def find_hog(self):
         # empty space + ground
+        if self.map[len(self.map)-1][self.x] != '_' :
+            return len(self.map) - self.y
         for y in range(self.worldHeight):
             if self.map[y][self.x] == '^':    
                 return abs(y-self.y)
-        return "help"
-    
 
     def weights(self):
         pass
