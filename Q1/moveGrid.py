@@ -57,13 +57,13 @@ def move(map, belief, movement = 2):
     return newBelief
 # combine beliefs by using bay's rules
 def average(belief1, belief2):
-    totalBelief = [1 for i in range(len(belief1))]
+    totalBelief = [1.0 for i in range(len(belief1))]
     for i in range(len(belief1)):
         totalBelief[i] *= (belief1[i] * belief2[i])
     sum = 0
     for i in totalBelief:
         sum+= i
-    for i in range(len(belief1)):
+    for i in range(len(totalBelief)):
         totalBelief[i] /= sum
     return totalBelief
 
