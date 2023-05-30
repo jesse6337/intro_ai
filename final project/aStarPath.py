@@ -6,11 +6,14 @@ map = [[0,0,0,0,0,0,0,0],
        [0,1,0,0,0,0,0,0],
        [0,1,0,0,0,0,0,0]
        ]
-openNodeList = []
+openList = []
 
-#print(openList)
+for i in range(len(map)):
+    for j in range(len(map[i])):
+        openList.append([i,j])
 
-# left, right, down, up
+
+
 posible_moves = ([-1,0], [1,0], [0,-1], [0,1])
 
 def takeSecond(elem):
@@ -38,50 +41,57 @@ class Node:
     def __repr__(self):
         return f'--x: {self.x} y: {self.y} g: {self.g} h: {self.h} f: {self.f}--'
 
-st = Node(start)
-st.update(goal)
-nodeList = [st]
-deadNodeList = []
-
-
-k = 0
 def find_lowest_f(list):
-    order = [[list[i].get_f(), i] for i in range(len(list))]
-    order.sort(key=takeSecond)
-    return order
+    lowest = 100
+    index = 0
+    for i in range(len(list)):
+        n = list[i].get_f()
+        if n <= lowest:
+            lowest =n
+            index = i
+    return list[index]
 
 
-previousPose = 0
-while k < 10:
+closedList = []
+
+nodeList = []
+k = 0
+flag = True
+while flag:
+    #print(k)
+    
+    pose = Node(openList[k])
+    pose.update(goal)
+    nodeList.append(pose)
+    q = find_lowest_f(nodeList)
+    openList.remove(q.get_pose())
+
+    
     expansion = []
-    pose = find_lowest_f(nodeList)[0]
-    if pose in deadNodeList:
-        pass
-    
-    for i in posible_moves:
-        x = pose[0]+ i[0]
-        y = pose[1]+i[1]
-        if x >=0 and y >=0 and x<= len(map) and y<= len(map)and map[pose[0]][pose[1]] ==0:
-            expansion.append([x,y])
+    for i in range(len(posible_moves)):
+        x = q.get_pose()[0]+posible_moves[i][0]
+        y = q.get_pose()[1]+posible_moves[i][1]
+        try:
+            if x>= 0 and x<= len(map[1]) and y>= 0 and y<= len(map) and map[x][y] == 0:
+                expansion.append([x,y])
+        except: nodeList.remove(pose)
     if expansion == []:
-        deadNodeList.append(pose)
+        nodeList.remove(pose)
         continue
-    print(expansion)
-    
     for i in expansion:
-        n = Node(i)
-        n.update(goal)
-        nodeList.append(n)
-    
-    if goal in expansion:
-        print("done")
-        break
-    #print(nodeList)
-    previousPose = pose
+        o = Node(i)
+        o.update(goal)
+        nodeList.append(o)
+        if i == goal:
+            print("done!")
+            flag = False
+            break
     k+=1
-print("")
+for i in range(len(nodeList)):
+    print(nodeList[i])
+    
+print(len(nodeList))
 
-        
 
 
 
